@@ -1,8 +1,11 @@
 """
-case_drift_detector.py - Project script (example).
+brandon_drift_detector.py - Project script (example).
 
 Author: Denise Case
 Date: 2026-03
+
+Author: Brandon Jean-Baptiste
+Date: 2026-04
 
 Reference and Current System Metrics Data
 
@@ -33,13 +36,13 @@ Questions to Consider
 
 Paths (relative to repo root)
 
-    INPUT FILE: data/reference_metrics_case.csv
-    INPUT FILE: data/current_metrics_case.csv
-    OUTPUT FILE: artifacts/drift_summary_case.csv
+    INPUT FILE: data/reference_metrics_brandon.csv
+    INPUT FILE: data/current_metrics_brandon.csv
+    OUTPUT FILE: artifacts/drift_summary_brandon.csv
 
 Terminal command to run this file from the root project folder
 
-    uv run python -m cintel.case_drift_detector
+    uv run python -m cintel.brandon_drift_detector
 
 OBS:
   Don't edit this file - it should remain a working example.
@@ -66,11 +69,11 @@ ROOT_DIR: Final[Path] = Path.cwd()
 DATA_DIR: Final[Path] = ROOT_DIR / "data"
 ARTIFACTS_DIR: Final[Path] = ROOT_DIR / "artifacts"
 
-REFERENCE_FILE: Final[Path] = DATA_DIR / "reference_metrics_case.csv"
-CURRENT_FILE: Final[Path] = DATA_DIR / "current_metrics_case.csv"
+REFERENCE_FILE: Final[Path] = DATA_DIR / "reference_metrics_brandon.csv"
+CURRENT_FILE: Final[Path] = DATA_DIR / "current_metrics_brandon.csv"
 
-OUTPUT_FILE: Final[Path] = ARTIFACTS_DIR / "drift_summary_case.csv"
-SUMMARY_LONG_FILE: Final[Path] = ARTIFACTS_DIR / "drift_summary_long_case.csv"
+OUTPUT_FILE: Final[Path] = ARTIFACTS_DIR / "drift_summary_brandon.csv"
+SUMMARY_LONG_FILE: Final[Path] = ARTIFACTS_DIR / "drift_summary_long_brandon.csv"
 
 # === DEFINE THRESHOLDS ===
 
