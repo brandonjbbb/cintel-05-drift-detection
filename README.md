@@ -3,142 +3,86 @@
 [![Python 3.14+](https://img.shields.io/badge/python-3.14%2B-blue?logo=python)](#)
 [![MIT](https://img.shields.io/badge/license-see%20LICENSE-yellow.svg)](./LICENSE)
 
-> Professional Python project for continuous intelligence.
+> Professional Python project for continuous intelligence and drift detection.
 
-Continuous intelligence systems monitor data streams, detect change, and respond in real time.
-This course builds those capabilities through working projects.
+Continuous intelligence systems monitor data streams, detect change, and support informed decisions in real time. This project applies those ideas through a professional Python workflow using baseline comparison and drift detection.
 
-In the age of generative AI, durable skills are grounded in real work:
-setting up a professional environment,
-reading and running code,
-understanding the logic,
-and pushing work to a shared repository.
-Each project follows the structure of professional Python projects.
-We learn by doing.
+In the age of generative AI, durable skills are grounded in real work: setting up a professional environment, reading and running code, understanding project logic, modifying code, documenting results, and pushing work to a shared repository. This project follows the structure of a professional Python analytics project and helps build those habits through hands-on practice.
 
 ## This Project
 
-This project introduces **drift detection**.
+This project focuses on **drift detection**.
 
-In practice, drift detection often begins with **baseline comparison**,
-comparing **current** system behavior to an **earlier reference period**.
+Drift detection often begins with **baseline comparison**, comparing **current** system behavior to an earlier **reference period**. The goal is to identify meaningful changes in system behavior by comparing summary statistics across two time periods.
 
-The goal is to copy this repository,
-set up your environment,
-run the example analysis,
-and explore how system behavior can change
-between an earlier **reference period**
-and a more recent **current period**.
+This project reads system metrics from input CSV files, calculates average values for each period, measures the difference between them, and flags potential drift when the change exceeds a chosen threshold.
 
-Run the example pipeline, read the code,
-and make small modifications to understand:
+The project helps demonstrate:
 
-- how average metrics are compared
+- how average metrics are compared across time periods
 - how baseline differences can indicate system change
-- how simple drift flags can be created
+- how drift flags can be used to highlight meaningful change
+- how project outputs can be saved as artifacts for review
 
-This approach provides a basic foundation
-for detecting changes in system behavior.
+## My Custom Project
+
+I modified the example project by adding a new derived metric called **error rate**.
+
+Error rate is calculated as total errors divided by total requests. I made this change because error rate gives a more meaningful measure of reliability than raw error counts alone. A system may have more total errors simply because it handled more traffic, but error rate helps show whether reliability itself changed.
+
+After running the modified project, the output includes:
+
+- reference and current error rate
+- error rate difference
+- error rate drift flag
+
+This made the project more useful for understanding changes in service quality as well as changes in workload.
 
 ## Data
 
-The example pipeline reads system metrics from:
+My custom pipeline reads system metrics from:
 
-`data/reference_metrics_case.csv`
-`data/current_metrics_case.csv`
+- `data/reference_metrics_brandon.csv`
+- `data/current_metrics_brandon.csv`
 
 Each row represents one observation of system behavior.
-The pipeline compares the reference and current datasets,
-summarizes average values, and saves the drift results as an artifact.
+
+The datasets include these fields:
+
+- `requests` - number of requests handled
+- `errors` - number of failed requests
+- `total_latency_ms` - total response time in milliseconds
+
+The pipeline compares the reference and current datasets, summarizes the metrics, calculates differences, and saves the drift results as artifacts.
+
+## Output Artifacts
+
+After running the project, the following output files are created in `artifacts/`:
+
+- `artifacts/drift_summary_brandon.csv`
+- `artifacts/drift_summary_long_brandon.csv`
+
+The first file saves the summary results in a wide one-row format.
+The second file saves the same results in a long format with one field per row, which is easier to read.
 
 ## Working Files
 
-You'll work with just these areas:
+The main parts of this project are:
 
-- **data/** - it starts with the data
-- **docs/** - tell the story
-- **src/cintel/** - where the magic happens
-- **pyproject.toml** - update authorship & links
-- **zensical.toml** - update authorship & links
+- **data/** - input datasets
+- **docs/** - project documentation
+- **src/cintel/** - Python pipeline code
+- **artifacts/** - generated output files
+- **pyproject.toml** - project metadata and dependencies
+- **zensical.toml** - documentation site configuration
 
-## Instructions
+## Setup
 
-Follow the [step-by-step workflow guide](https://denisecase.github.io/pro-analytics-02/workflow-b-apply-example-project/) to complete:
+### Clone the repository
 
-1. Phase 1. **Start & Run**
-2. Phase 2. **Change Authorship**
-3. Phase 3. **Read & Understand**
-4. Phase 4. **Modify**
-5. Phase 5. **Apply**
-
-## Challenges
-
-Challenges are expected.
-Sometimes instructions may not quite match your operating system.
-When issues occur, share screenshots, error messages, and details about what you tried.
-Working through issues is part of implementing professional projects.
-
-## Success
-
-After completing Phase 1. **Start & Run**, you'll have your own GitHub project,
-running on your machine, and running the example will print out:
+In a machine terminal, open your `Repos` folder and run:
 
 ```shell
-========================
-Pipeline executed successfully!
-========================
-```
-
-And a new file named `project.log` will appear in the project folder.
-
-## Command Reference
-
-The commands below are used in the workflow guide above.
-They are provided here for convenience.
-
-Follow the guide for the **full instructions**.
-
-<details>
-<summary>Show command reference</summary>
-
-### In a machine terminal (open in your `Repos` folder)
-
-After you get a copy of this repo in your own GitHub account,
-open a machine terminal in your `Repos` folder:
-
-```shell
-# Replace username with YOUR GitHub username.
-git clone https://github.com/brandonjbbb/cintel-05-drift-detection
-
+git clone https://github.com/brandonjbbb/cintel-05-drift-detection.git
 cd cintel-05-drift-detection
 code .
-```
-
-### In a VS Code terminal
-
-```shell
-uv self update
-uv python pin 3.14
-uv sync --extra dev --extra docs --upgrade
-
-uvx pre-commit install
-git add -A
-uvx pre-commit run --all-files
-
-uv run python -m cintel.case_drift_detector
-
-uv run ruff format .
-uv run ruff check . --fix
-uv run zensical build
-
-git add -A
-git commit -m "update"
-git push -u origin main
-```
-
-</details>
-
-## Notes
-
-- Use the **UP ARROW** and **DOWN ARROW** in the terminal to scroll through past commands.
-- Use `CTRL+f` to find (and replace) text within a file.
