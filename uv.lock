@@ -14,7 +14,7 @@ wheels = [
 [[package]]
 name = "cintel"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "datafun-toolkit" },
     { name = "polars", extra = ["rtcompat"] },
